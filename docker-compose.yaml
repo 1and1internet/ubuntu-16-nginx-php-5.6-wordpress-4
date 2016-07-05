@@ -1,0 +1,30 @@
+version: '2'
+services:
+  wordpress:
+    hostname: wordpress-nginx
+    container_name: wordpress-nginx
+    build: .
+    image: wordpress-nginx
+    ports:
+      - "80:8080"
+    user: "100000"
+    environment:
+        SUPERVISORD_LOGLEVEL: debug
+    depends_on:
+      - mysql
+    links:
+      - mysql
+
+  mysql:
+    hostname: mysql
+    container_name: mysql
+    image: 1and1internet/ubuntu-16-nginx-php-phpmyadmin-mariadb-10
+    user: "100000"
+    ports:
+        - "8081:8080"
+        - "3306:3306"
+    environment:
+      MYSQL_USER: username
+      MYSQL_PASSWORD: EnvVarHere
+      MYSQL_DATABASE: databasename
+      MYSQL_ROOT_PASSWORD: rootroot1!

@@ -1,0 +1,5 @@
+# Wordpress updates and installation.
+#
+# When deployed to openshift our image cannot update or install plugins or themes automatically. It can fine when running as a non-root user set locally.
+# Potential fix is to add 'define('FS_METHOD', 'direct');' to wp-config file however this isn't generated until after customer has completed installation. 
+#

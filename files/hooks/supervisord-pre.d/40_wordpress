@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#Checking to see if Wordpress already exists. If it does then won't copy from /usr/src/ otherwise we will.
+
+if [ -e "/var/www/html/wp-config.php" ]; then 
+    echo "Wordpress found. Doing nothing."
+    exit 0
+fi
+if  [ -e "/var/www/html/wp-includes/version.php" ]; then
+    echo "Wordpress found. Doing nothing."
+    exit 0
+fi
+
+echo >&2 "Wordpress not found in /var/www/html - copying now..."
+tar -xz --strip-components=1 -f /usr/src/wordpress.tar.gz -C /var/www/html/
+mv /var/www/html/wp-admin/setup-config.php /var/www/html/wp-admin/original-setup-config.php
+cp /usr/src/wordpress/wp-admin/setup-config.php /var/www/html/wp-admin/setup-config.php
+unzip /usr/src/ssh-sftp-updater-support.0.7.1.zip -d /var/www/html/wp-content/plugins/
+rm /var/www/html/index.html
+echo >&2 "Complete! Wordpress has been successfully copied to $(pwd)"

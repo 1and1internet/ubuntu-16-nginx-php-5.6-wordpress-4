@@ -13,8 +13,6 @@ fi
 
 echo >&2 "Wordpress not found in /var/www/html - copying now..."
 tar -xz --strip-components=1 -f /usr/src/wordpress.tar.gz -C /var/www/html/
-# mv /var/www/html/wp-admin/setup-config.php /var/www/html/wp-admin/original-setup-config.php
-# cp /usr/src/wordpress/wp-admin/setup-config.php /var/www/html/wp-admin/setup-config.php
 sed -i 's@id="dbname" type="text" size="25" value=".*"@id="dbname" type="text" size="25" value="'"$WORDPRESS_DB_NAME"'"@g' /var/www/html/wp-admin/setup-config.php
 sed -i 's@id="uname" type="text" size="25" value=".*"@id="uname" type="text" size="25" value="'"$WORDPRESS_DB_USER"'"@g' /var/www/html/wp-admin/setup-config.php
 sed -i 's@id="pwd" type="text" size="25" value=".*"@id="pwd" type="text" size="25" value="'"$WORDPRESS_DB_PASSWORD"'"@g' /var/www/html/wp-admin/setup-config.php

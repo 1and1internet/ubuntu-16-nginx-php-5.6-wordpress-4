@@ -17,4 +17,5 @@ apt-get install -y unzip libpng12-dev libjpeg-dev php5.6-gd php5.6-mysql curl &&
 rm -rf /var/lib/apt/lists/* &&\
 WORDPRESS_DOWNLOAD=$(curl -fsL https://wordpress.org/download/release-archive/ | grep -Eo 'https://wordpress.org/wordpress-4.[0-9]{1,2}.[0-9]{1,2}.tar.gz' | sort -nr | uniq | head -1) && \
 curl -fsL $WORDPRESS_DOWNLOAD -o /usr/src/wordpress.tar.gz && \
-chmod -R 755 /hooks /init
+chmod -R 755 /hooks /init && \
+chmod 666 /etc/nginx/sites-enabled/site.conf

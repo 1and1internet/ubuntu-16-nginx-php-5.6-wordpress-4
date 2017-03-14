@@ -2,7 +2,7 @@
 
 #Checking to see if Wordpress already exists. If it does then won't copy from /usr/src/ otherwise we will.
 
-if [[ $(find /var/www/$DOCUMENT_ROOT -mindepth 1 ! -name index.html -a ! -name index.nginx-debian.html -print -quit | wc -l) -ne 0 ]]; then 
+if [[ $(find /var/www/$DOCUMENT_ROOT -mindepth 1 ! -name index.html -a ! -name index.nginx-debian.html -a ! -name phpinfo.php -print -quit | wc -l) -ne 0 ]]; then
     echo "Users document root directory not empty. Not touching content."
     exit 0
 fi
